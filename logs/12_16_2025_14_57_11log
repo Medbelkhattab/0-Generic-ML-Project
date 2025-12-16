@@ -1,0 +1,13 @@
+[ 2025-12-16 14:57:12,213 ] 160 numexpr.utils - INFO - NumExpr defaulting to 8 threads.
+[ 2025-12-16 14:57:14,340 ] 30 root - INFO - Entered the data ingestion method or component
+[ 2025-12-16 14:57:14,352 ] 33 root - INFO - Read the dataset as dataframe is done
+[ 2025-12-16 14:57:14,368 ] 44 root - INFO - ingestion of the data is completed
+[ 2025-12-16 14:57:14,396 ] 82 root - INFO - Read train and test data completed
+[ 2025-12-16 14:57:14,396 ] 83 root - INFO - Obtaining preprocessing object
+[ 2025-12-16 14:57:14,396 ] 43 root - INFO - Numerical standard scaling cempleted
+[ 2025-12-16 14:57:14,396 ] 54 root - INFO - Numericals columns:['writing_score', 'reading_score']
+[ 2025-12-16 14:57:14,398 ] 55 root - INFO - Categorical columns:['gender', 'race_ethnicity', 'parental_level_of_education', 'lunch', 'test_preparation_course']
+[ 2025-12-16 14:57:14,398 ] 96 root - INFO - Applying preprocessing object on training dataframe and testing dataframe.
+[ 2025-12-16 14:57:14,416 ] 107 root - INFO - Saved preprocessing object.
+[ 2025-12-16 14:57:14,416 ] 33 root - INFO - split training and test input data
+[ 2025-12-16 14:57:17,289 ] 69 root - INFO - Best model on both training and testing dataset
