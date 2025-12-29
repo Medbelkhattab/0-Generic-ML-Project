@@ -1,6 +1,7 @@
 import os
 import sys
 import dill
+import pickle
 
 import numpy as np
 import pandas as pd
@@ -26,7 +27,7 @@ def save_object(file_path, obj):
     
 
 
-def evaluate_models(X_train, y_train, X_test, y_test, models):
+def evaluate_models(X_train, y_train, X_test, y_test, models,param):
     """
     This function takes a dictionary of models, trains them, 
     and returns a dictionary of their R2 scores.
@@ -38,9 +39,29 @@ def evaluate_models(X_train, y_train, X_test, y_test, models):
             model = list(models.values())[i] # "list(models.values())"return a list with the values of models, and with
             # [i]==> we take in each iteration we take one Model from models. 
             
-            # Train model
-            model.fit(X_train, y_train)
+            para=param[list(models.keys())[i]]#===>check param in model_trainer.py==> para take the values of params, which are 
+            #                                      criteria name with list of the criteria: {'criteria':[2,5,12]}
 
+
+        
+            gs = GridSearchCV(model,para,cv=3)  # Setup the Experiment:(no action here. we don't have the data)"Test this 'model' using these 'para' settings. Split data 3 times (cv=3)."
+            gs.fit(X_train,y_train)  # Run the Experiment (This takes time!): It trains the model dozens of times with different settings.
+
+           
+            # Update the Model with the Winner
+            # gs.best_params_ contains the winning settings (e.g., {'n_estimators': 128})
+            # set_params applies them to our model variable.
+            model.set_params(**gs.best_params_)
+            '''
+            --> gs.best_params_ returns a dictionary, like: {'n_estimators': 128, 'depth': 10}.
+            --> The ** (Double Star) is Python unpacking. It converts that dictionary into arguments.
+            --> It turns the code into this automatically:
+            --> model.set_params(n_estimators=128, depth=10)
+            '''
+
+            model.fit(X_train,y_train) # Train the Final Model: Now that the model has the best settings, we train it one last time.
+
+           
             # Predict Testing data
             y_test_pred = model.predict(X_test)
 
@@ -52,6 +73,14 @@ def evaluate_models(X_train, y_train, X_test, y_test, models):
             
 
         return report
+
+    except Exception as e:
+        raise CustomException(e, sys)
+
+def load_object(file_path):
+    try:
+        with open(file_path, "rb") as file_obj:
+            return pickle.load(file_obj)
 
     except Exception as e:
         raise CustomException(e, sys)
