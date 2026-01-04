@@ -42,4 +42,4 @@ def predict_datapoint():
         return render_template('home.html', results=results[0]) #label=value==> 1st results is label from html file and 2nd results = predict_pipeline.predict(data_df)
 
 if __name__ == "__main__":
-    application.run(host='0.0.0.0')
+    app.run(host='0.0.0.0')
