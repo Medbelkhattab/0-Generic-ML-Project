@@ -1,6 +1,6 @@
 # END TO END MLOps PROJECTGIT
 
-![MLOps Architecture](.diagram mlops.png)
+![MLOps Architecture](diagram%20mlops.png)
 
 End to End MAchine Learning Project
 Docker Build checked
