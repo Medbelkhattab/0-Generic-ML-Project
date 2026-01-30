@@ -1,4 +1,6 @@
-# END TO END GENERIC ML PROJECTGIT
+# END TO END MLOps PROJECTGIT
+
+![MLOps Architecture](.diagram mlops.png)
 
 End to End MAchine Learning Project
 Docker Build checked
